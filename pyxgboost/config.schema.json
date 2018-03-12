@@ -1,0 +1,38 @@
+{
+	"title": "pyxgboost setuptools config",
+	"description": "a config to setuptools to trigger compiling xgboost models into python code",
+	"type": "object",
+	"definitions" : {
+		"modelsDict" : {
+			"type" : "object",
+			"description": "A dictionary of models to transpile into python, keys are paths to resulting python sources, values are paths to models",
+			"additionalProperties" : {
+				"description": "A path to a model",
+				"format" : "path"
+			}
+		}
+	},
+	
+	"required" : ["models"],
+	"properties" : {
+		"models" : {
+			"$ref" : "#/definitions/modelsDict"
+		},
+		"outputDir" : {
+			"description": "A path to a dir to output results",
+			"format" : "path",
+			"default": null
+		},
+		"inputDir" : {
+			"description": "A path to a dir with ksy files",
+			"format" : "path",
+			"default": null
+		},
+		"search":{
+			"description": "Whether input dir should be searched for `*.ksy`s",
+			"type" : "boolean",
+			"default": false
+		}
+	},
+	"additionalProperties" : false
+}
